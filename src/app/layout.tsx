@@ -26,9 +26,7 @@ export default function RootLayout({
         <head>
           <link rel="icon" href="/logosaas.png" />
         </head>
-        <body
-          className={cn(dmSans.className, "antialiased bg-black text-white")}
-        >
+        <body className={cn(dmSans.className, "antialiased")}>
           <Banner />
           <Navbar />
           {children}

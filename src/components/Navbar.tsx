@@ -19,7 +19,7 @@ import Link from "next/link";
 
 export const Navbar = () => {
   return (
-    <div className="bg-transparent sticky top-0 z-[999999999]">
+    <div className="bg-black sticky top-0 z-[999999999] backdrop-blur-sm">
       <div className="container">
         <div className="py-4 flex items-center justify-between">
           <div className="flex justify-center items-center gap-4">
