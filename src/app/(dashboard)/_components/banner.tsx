@@ -6,7 +6,10 @@ const Banner = () => {
           <span className="hidden sm:inline">
             Help us improve our product -{" "}
           </span>
-          <a href="#" className="underline unerline-offset-4">
+          <a
+            href="https://github.com/krishna-paulraj/crowd-funding"
+            className="underline unerline-offset-4"
+          >
             Contribute to us!
           </a>
         </p>
