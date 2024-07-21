@@ -19,9 +19,9 @@ const team = [
   {
     name: "Karan Thakur",
     role: "DevOps",
-    description: "Manages deployment and server configuration",
+    description: "Manages deployment and server configuration.",
     image: KaranAvatar,
-    link: "https://x.com/thedevkrish",
+    link: "https://x.com/karan_1890",
     pin: "x.com/karan_1890",
   },
   {
@@ -69,7 +69,7 @@ export const Team = () => {
                     {member.name}
                   </h3>
                   <div className="text-base !m-0 !p-0 font-normal flex flex-col">
-                    <span className="text-slate-500 ">{member.role}</span>
+                    <span className="text-purple-400">{member.role}</span>
                     <span>{member.description}</span>
                   </div>
                 </div>

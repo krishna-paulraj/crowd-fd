@@ -13,16 +13,20 @@ import {
   DrawerTitle,
   DrawerTrigger,
 } from "./ui/drawer";
-
-import { Drawer as DrawerPrimitive } from "vaul";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export const Navbar = () => {
+  const router = useRouter();
+
   return (
     <div className="bg-black sticky top-0 z-[999999999] backdrop-blur-sm">
       <div className="container">
         <div className="py-4 flex items-center justify-between">
-          <div className="flex justify-center items-center gap-4">
+          <div
+            className="flex justify-center items-center gap-4 cursor-pointer"
+            onClick={() => router.push("/")}
+          >
             <div className="relative">
               <div className="absolute w-full top-2 bottom-0 blur-md bg-[linear-gradient(to_right,rgb(252,_241,_255,_.7),rgb(41,_216,_255,_.7),rgb(255,_253,_128,_.7),rgb(248,_154,_191,_.7),rgb(252,_214,_255,_.7))]"></div>
               <Image
@@ -82,26 +86,26 @@ export const Navbar = () => {
             </Drawer>
           </div>
           <nav className="hidden sm:flex gap-6 items-center">
-            <a
-              href="#"
-              className="text-opacity-60 text-white hover:text-opacity-90 transition"
+            <h1
+              onClick={() => router.push("/docs")}
+              className="text-opacity-60 text-white hover:text-opacity-90 transition cursor-pointer"
             >
-              Learn
-            </a>
+              Docs
+            </h1>
 
-            <a
-              href="#"
-              className="text-opacity-60 text-white hover:text-opacity-90 transition"
+            <h1
+              onClick={() => router.push("/explore")}
+              className="text-opacity-60 text-white hover:text-opacity-90 transition cursor-pointer"
             >
               About
-            </a>
+            </h1>
 
-            <a
-              href="#"
-              className="text-opacity-60 text-white hover:text-opacity-90 transition"
+            <h1
+              onClick={() => router.push("/explore")}
+              className="text-opacity-60 text-white hover:text-opacity-90 transition cursor-pointer"
             >
               Explore
-            </a>
+            </h1>
             <Button variant={"secondary"}>Get Started</Button>
           </nav>
         </div>

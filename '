@@ -1,0 +1,40 @@
+import Image from "next/image";
+import appLogo from "@/assets/images/logosaas.png";
+import { FlipWords } from "@/components/ui/flip-words";
+
+const Campaign = [
+  {
+    title: "",
+    description: "",
+    category: "",
+    ownedBy: "",
+  },
+];
+
+const ExporePage = () => {
+  const words = ["Inspire", "Innovate", "Empower", "Spark"];
+  return (
+    <div className="min-h-screen bg-black text-white">
+      <div className="container">
+        <div className="flex flex-col items-center justify-center text-center">
+          <Image src={appLogo} alt="App Logo" className="h-40 w-auto" />
+          <div className="text-3xl font-bold">
+            Explore Ideas that
+            <br className="block sm:hidden" />
+            <FlipWords words={words} className="text-white" />
+          </div>
+          <p className="text-sm sm:text-lg text-purple-300">
+            Join a vibrant community of supporters and creators.
+          </p>
+        </div>
+        <div className="border border-white/60 mt-10"></div>
+      </div>
+      <div className="container">
+        <h1 className="text-2xl py-2">Categories....</h1>
+        <div></div>
+      </div>
+    </div>
+  );
+};
+
+export default ExporePage;

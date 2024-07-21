@@ -1,0 +1,110 @@
+"use client";
+import { TrendingUp } from "lucide-react";
+import {
+  Label,
+  PolarGrid,
+  PolarRadiusAxis,
+  RadialBar,
+  RadialBarChart,
+} from "recharts";
+import { FolderIcon } from "lucide-react";
+import Image from "next/image";
+import appScreen from "@/assets/images/app-screen.png";
+import { ChartConfig, ChartContainer } from "@/components/ui/chart";
+
+const chartData = [
+  { browser: "safari", visitors: 1260, fill: "var(--color-safari)" },
+];
+const chartConfig = {
+  visitors: {
+    label: "Visitors",
+  },
+  safari: {
+    label: "Safari",
+    color: "hsl(var(--chart-2))",
+  },
+} satisfies ChartConfig;
+
+export const CampaignCard = () => {
+  return (
+    <div className="w-full sm:w-[288px] shadow-sm shadow-white/30 rounded-lg bg-[#1c1c24] flex flex-col items-center">
+      <Image
+        src={appScreen}
+        alt="App Screen"
+        className="h-[158px] w-full object-cover object-top rounded-lg"
+      />
+
+      <div className="w-full font-epilogue font-medium text-[12px] text-[#808191] flex justify-start items-center gap-2 p-4">
+        <FolderIcon className="h-5 w-auto" />
+        <h1>Education</h1>
+      </div>
+
+      <div className="block w-full px-4">
+        <h3 className="font-epilogue font-semibold text-[16px] text-white text-left leading-[26px] truncate">
+          Title
+        </h3>
+        <p className="mt-[5px] font-epilogue font-normal text-[#808191] text-left leading-[18px] truncate">
+          description
+        </p>
+      </div>
+
+      <div className="w-full flex p-4 justify-between items-center">
+        <div className="h-40">
+          <ChartContainer
+            config={chartConfig}
+            className="min-h-20 mx-auto aspect-square max-h-[200px]"
+          >
+            <RadialBarChart
+              data={chartData}
+              endAngle={10}
+              innerRadius={40}
+              outerRadius={100}
+            >
+              <PolarGrid
+                gridType="circle"
+                radialLines={false}
+                stroke="none"
+                className="first:fill-muted last:fill-background"
+                polarRadius={[86, 74]}
+              />
+              <RadialBar dataKey="visitors" background />
+              <PolarRadiusAxis tick={false} tickLine={false} axisLine={false}>
+                <Label
+                  content={({ viewBox }) => {
+                    if (viewBox && "cx" in viewBox && "cy" in viewBox) {
+                      return (
+                        <text
+                          x={viewBox.cx}
+                          y={viewBox.cy}
+                          textAnchor="middle"
+                          dominantBaseline="middle"
+                        >
+                          <tspan
+                            x={viewBox.cx}
+                            y={viewBox.cy}
+                            className="fill-foreground text-4xl font-bold"
+                          >
+                            {chartData[0].visitors.toLocaleString()}
+                          </tspan>
+                          <tspan
+                            x={viewBox.cx}
+                            y={(viewBox.cy || 0) + 24}
+                            className="fill-muted-foreground"
+                          >
+                            Visitors
+                          </tspan>
+                        </text>
+                      );
+                    }
+                  }}
+                />
+              </PolarRadiusAxis>
+            </RadialBarChart>
+          </ChartContainer>
+        </div>
+        <h1>hello</h1>
+        <h1>hellp</h1>
+      </div>
+    </div>
+  );
+};

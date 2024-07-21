@@ -22,7 +22,7 @@ export const Features = () => {
           <Image
             src={appScreen}
             alt="app screen"
-            className="h-64 w-auto object-cover object-left-top rounded-lg inset-0"
+            className="h-72 w-auto object-cover object-left-top rounded-lg inset-0"
           />
         </div>
       </div>
