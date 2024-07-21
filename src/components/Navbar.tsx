@@ -57,12 +57,7 @@ export const Navbar = () => {
                     </DrawerDescription>
                   </DrawerHeader>
                   <div className="p-4 pb-0 text-white/70">
-                    <div
-                      onClick={() => {
-                        DrawerPrimitive.Close;
-                      }}
-                      className="flex flex-col items-center justify-center space-y-2"
-                    >
+                    <div className="flex flex-col items-center justify-center space-y-2 w-full">
                       <Link href={"/"}>
                         <DrawerClose>
                           <h1 className="font-bold">Home</h1>
