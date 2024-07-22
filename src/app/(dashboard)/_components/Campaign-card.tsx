@@ -70,6 +70,7 @@ export const CampaignCard = ({ campaign }: CampaignCardProps) => {
   return (
     <div className="flex w-[288px] cursor-pointer flex-col items-center rounded-xl border border-[#333333] bg-[#1E1E1E] shadow-lg shadow-[rgba(0,0,0,0.4)]">
       <Image
+        loading="lazy"
         src={appScreen}
         alt="App Screen"
         className="h-[158px] w-full rounded-lg object-cover object-top"
