@@ -50,9 +50,8 @@ export function Category({ category, setCategory }: CategoryProps) {
           <CommandEmpty>No framework found.</CommandEmpty>
           <CommandGroup>
             {category.map((cat) => (
-              <CommandList>
+              <CommandList key={cat}>
                 <CommandItem
-                  key={cat}
                   value={cat}
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue);
