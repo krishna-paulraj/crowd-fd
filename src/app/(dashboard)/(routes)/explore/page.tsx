@@ -1,6 +1,6 @@
-import Image from "next/image";
-import appLogo from "@/assets/images/logosaas.png";
-import { FlipWords } from "@/components/ui/flip-words";
+"use client";
+
+import { useState } from "react";
 import { CampaignCard } from "../../_components/Campaign-card";
 import {
   Pagination,
@@ -11,15 +11,20 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from "@/components/ui/pagination";
+import { Hero } from "./_components/Hero";
+import { Category } from "./_components/Categories";
+import { Input } from "@/components/ui/input";
+import { Search } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
-const Campaign = [
+const campaignData = [
   {
     title: "Solar-Powered Community Gardens",
     description:
       "Creating solar-powered community gardens in urban areas to provide fresh produce and promote sustainable practices.",
     category: "Environment",
     ownedBy: "GreenFuture Initiative",
-    timeLeft: "30 days",
+    endDate: new Date("2024-09-15"),
     fundingGoal: 50000,
     currentFunding: 25000,
   },
@@ -29,7 +34,7 @@ const Campaign = [
       "Providing rural schools with virtual reality classrooms to enhance the learning experience and provide access to quality education.",
     category: "Education",
     ownedBy: "TechEd Revolution",
-    timeLeft: "45 days",
+    endDate: new Date("2024-10-01"),
     fundingGoal: 75000,
     currentFunding: 45000,
   },
@@ -39,7 +44,7 @@ const Campaign = [
       "Installing interactive public art pieces in underserved neighborhoods to inspire creativity and community engagement.",
     category: "Art",
     ownedBy: "Art for All",
-    timeLeft: "20 days",
+    endDate: new Date("2024-08-20"),
     fundingGoal: 30000,
     currentFunding: 20000,
   },
@@ -49,7 +54,7 @@ const Campaign = [
       "Providing free heart health screenings and educational workshops in low-income communities.",
     category: "Health",
     ownedBy: "Healthy Hearts Foundation",
-    timeLeft: "35 days",
+    endDate: new Date("2024-09-05"),
     fundingGoal: 40000,
     currentFunding: 15000,
   },
@@ -59,7 +64,7 @@ const Campaign = [
       "Providing mentorship and leadership training to young people, helping them develop the skills they need to succeed.",
     category: "Youth",
     ownedBy: "Youth Empowerment Network",
-    timeLeft: "50 days",
+    endDate: new Date("2024-10-20"),
     fundingGoal: 50000,
     currentFunding: 25000,
   },
@@ -69,7 +74,7 @@ const Campaign = [
       "Building wells and water purification systems in remote villages to provide access to clean drinking water.",
     category: "Humanitarian",
     ownedBy: "WaterWorks",
-    timeLeft: "40 days",
+    endDate: new Date("2024-09-30"),
     fundingGoal: 60000,
     currentFunding: 30000,
   },
@@ -79,7 +84,7 @@ const Campaign = [
       "Hosting workshops to educate communities on renewable energy solutions and sustainability practices.",
     category: "Education",
     ownedBy: "Sustainable Future",
-    timeLeft: "25 days",
+    endDate: new Date("2024-08-25"),
     fundingGoal: 35000,
     currentFunding: 18000,
   },
@@ -89,7 +94,7 @@ const Campaign = [
       "Providing senior citizens with access to technology and training to improve their quality of life.",
     category: "Technology",
     ownedBy: "SilverTech",
-    timeLeft: "28 days",
+    endDate: new Date("2024-09-01"),
     fundingGoal: 45000,
     currentFunding: 22000,
   },
@@ -99,7 +104,7 @@ const Campaign = [
       "Transforming vacant lots into green spaces for community use and environmental benefits.",
     category: "Environment",
     ownedBy: "CityGreen",
-    timeLeft: "60 days",
+    endDate: new Date("2024-11-01"),
     fundingGoal: 55000,
     currentFunding: 27500,
   },
@@ -109,7 +114,7 @@ const Campaign = [
       "Developing sports programs for underprivileged youth to promote physical activity and teamwork.",
     category: "Youth",
     ownedBy: "ActiveKids",
-    timeLeft: "37 days",
+    endDate: new Date("2024-09-12"),
     fundingGoal: 40000,
     currentFunding: 20000,
   },
@@ -119,7 +124,7 @@ const Campaign = [
       "Organizing a music festival to bring together local artists and the community.",
     category: "Art",
     ownedBy: "SoundWave Collective",
-    timeLeft: "45 days",
+    endDate: new Date("2024-10-01"),
     fundingGoal: 30000,
     currentFunding: 15000,
   },
@@ -129,7 +134,7 @@ const Campaign = [
       "Offering digital literacy classes to help individuals navigate the digital world effectively.",
     category: "Education",
     ownedBy: "TechLearn",
-    timeLeft: "42 days",
+    endDate: new Date("2024-09-28"),
     fundingGoal: 50000,
     currentFunding: 25000,
   },
@@ -139,7 +144,7 @@ const Campaign = [
       "Promoting organic farming practices to ensure healthy food production and environmental sustainability.",
     category: "Agriculture",
     ownedBy: "GreenFarmers",
-    timeLeft: "55 days",
+    endDate: new Date("2024-10-15"),
     fundingGoal: 60000,
     currentFunding: 30000,
   },
@@ -149,7 +154,7 @@ const Campaign = [
       "Creating awareness and providing resources for mental health support in the community.",
     category: "Health",
     ownedBy: "MindCare",
-    timeLeft: "30 days",
+    endDate: new Date("2024-09-15"),
     fundingGoal: 40000,
     currentFunding: 20000,
   },
@@ -159,7 +164,7 @@ const Campaign = [
       "Offering job training programs to help veterans transition to civilian careers.",
     category: "Veterans",
     ownedBy: "VetsWork",
-    timeLeft: "35 days",
+    endDate: new Date("2024-09-20"),
     fundingGoal: 45000,
     currentFunding: 22500,
   },
@@ -169,7 +174,7 @@ const Campaign = [
       "Educating the community on the importance of recycling and how to do it effectively.",
     category: "Environment",
     ownedBy: "RecycleNow",
-    timeLeft: "48 days",
+    endDate: new Date("2024-10-03"),
     fundingGoal: 35000,
     currentFunding: 17500,
   },
@@ -179,7 +184,7 @@ const Campaign = [
       "Building a community library to provide access to books and educational resources.",
     category: "Education",
     ownedBy: "BookHaven",
-    timeLeft: "52 days",
+    endDate: new Date("2024-10-10"),
     fundingGoal: 55000,
     currentFunding: 27500,
   },
@@ -189,7 +194,7 @@ const Campaign = [
       "Expanding the local animal shelter to accommodate more animals and improve their care.",
     category: "Animal Welfare",
     ownedBy: "SafePaws",
-    timeLeft: "40 days",
+    endDate: new Date("2024-09-30"),
     fundingGoal: 50000,
     currentFunding: 25000,
   },
@@ -199,7 +204,7 @@ const Campaign = [
       "Renovating the community theater to provide a better space for local performances and events.",
     category: "Art",
     ownedBy: "StageLights",
-    timeLeft: "50 days",
+    endDate: new Date("2024-10-20"),
     fundingGoal: 45000,
     currentFunding: 22500,
   },
@@ -209,43 +214,64 @@ const Campaign = [
       "Creating fitness programs tailored for seniors to improve their health and well-being.",
     category: "Health",
     ownedBy: "FitSeniors",
-    timeLeft: "33 days",
+    endDate: new Date("2024-07-22"),
     fundingGoal: 40000,
     currentFunding: 20000,
   },
 ];
+
+const categories = [
+  "All",
+  "Environment",
+  "Education",
+  "Art",
+  "Health",
+  "Technology",
+  "Humanitarian",
+  "Youth",
+  "Agriculture",
+  "Animal Welfare",
+  "Veterans",
+  "Sports",
+  "Community",
+  "Sustainability",
+  "Social Impact",
+  "Research",
+  "Local Projects",
+  "Cultural Heritage",
+  "Public Services",
+  "Innovation",
+  "Media",
+];
+
 const ExporePage = () => {
-  const words = ["Inspire", "Innovate", "Empower", "Spark"];
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const filteredCampaigns =
+    selectedCategory === "All" || selectedCategory === ""
+      ? campaignData
+      : campaignData.filter((camp) => camp.category == selectedCategory);
+
   return (
-    <div className="min-h-screen bg-black text-white">
-      <div className="container">
-        <div className="flex flex-col items-center justify-center text-center">
-          <Image src={appLogo} alt="App Logo" className="h-40 w-auto" />
-          <div className="text-3xl font-bold">
-            Explore Ideas that
-            <br className="block sm:hidden" />
-            <FlipWords words={words} className="text-white" />
-          </div>
-          <p className="text-sm sm:text-lg text-purple-300">
-            Join a vibrant community of supporters and creators.
-          </p>
-        </div>
-        <div className="border border-white/60 mt-10"></div>
-      </div>
+    <div className="min-h-screen bg-gradient-to-b from-black via-purple-800 to-black text-white">
+      <Hero />
       <div className="container w-full">
-        <h1 className="text-2xl py-2">Categories....</h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 justify-items-center py-5 gap-10">
-          <CampaignCard />
-          <CampaignCard />
-          <CampaignCard />
-          <CampaignCard />
-          <CampaignCard />
-          <CampaignCard />
-          <CampaignCard />
-          <CampaignCard />
+        <div className="mt-5 flex flex-col items-center gap-2 sm:flex-row sm:justify-between">
+          <div className="flex w-full items-center justify-center gap-2 sm:w-96">
+            <Input placeholder="Search" className="w-full" />
+            <Button size={"sm"}>
+              <Search className="mr-1 h-4 w-auto" />
+              Find
+            </Button>
+          </div>
+          <Category category={categories} setCategory={setSelectedCategory} />
+        </div>
+        <div className="flex flex-wrap justify-center gap-10 py-5 sm:justify-between">
+          {filteredCampaigns.map((campaign) => (
+            <CampaignCard key={campaign.title} campaign={campaign} />
+          ))}
         </div>
       </div>
-      <Pagination className="py-3">
+      <Pagination className="py-5">
         <PaginationContent>
           <PaginationItem>
             <PaginationPrevious

@@ -46,18 +46,18 @@ const team = [
 
 export const Team = () => {
   return (
-    <div className="relative text-center text-white bg-gradient-to-b from-black from-80% to-[#5D2CA8] py-[72px]">
+    <div className="relative bg-gradient-to-b from-black from-80% to-[#5D2CA8] py-[72px] text-center text-white">
       <div className="container">
         <h1 className="text-4xl font-bold">Our Team</h1>
-        <h1 className="text-5xl mt-2 tracking-wide">the “OGs”</h1>
+        <h1 className="mt-2 text-5xl tracking-wide">the “OGs”</h1>
         <div className="mt-10 flex flex-wrap justify-center">
           {team.map((member) => (
             <div
               key={member.name}
-              className="h-[30rem] bg-dot-white w-full sm:w-[45%] mb-2 flex items-center justify-center"
+              className="bg-dot-white mb-2 flex h-[30rem] w-full items-center justify-center sm:w-[45%]"
             >
               <PinContainer title={member.pin} href={member.link}>
-                <div className="flex basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2 w-[20rem] h-[26rem] ">
+                <div className="flex h-[26rem] w-[20rem] basis-full flex-col p-4 tracking-tight text-slate-100/50 sm:basis-1/2">
                   <Image
                     src={member.image}
                     height={300}
@@ -65,10 +65,10 @@ export const Team = () => {
                     alt="Avatar of Karan"
                     className="pb-3"
                   />
-                  <h3 className="max-w-xs !pb-2 !m-0 mt-2 font-bold  text-base text-slate-100">
+                  <h3 className="!m-0 mt-2 max-w-xs !pb-2 text-base font-bold text-slate-100">
                     {member.name}
                   </h3>
-                  <div className="text-base !m-0 !p-0 font-normal flex flex-col">
+                  <div className="!m-0 flex flex-col !p-0 text-base font-normal">
                     <span className="text-purple-400">{member.role}</span>
                     <span>{member.description}</span>
                   </div>

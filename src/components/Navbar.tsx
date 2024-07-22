@@ -20,40 +20,40 @@ export const Navbar = () => {
   const router = useRouter();
 
   return (
-    <div className="bg-black sticky top-0 z-[999999999] backdrop-blur-sm">
+    <div className="sticky top-0 z-[999999999] bg-black backdrop-blur-sm">
       <div className="container">
-        <div className="py-4 flex items-center justify-between">
+        <div className="flex items-center justify-between py-4">
           <div
-            className="flex justify-center items-center gap-4 cursor-pointer"
+            className="flex cursor-pointer items-center justify-center gap-4"
             onClick={() => router.push("/")}
           >
             <div className="relative">
-              <div className="absolute w-full top-2 bottom-0 blur-md bg-[linear-gradient(to_right,rgb(252,_241,_255,_.7),rgb(41,_216,_255,_.7),rgb(255,_253,_128,_.7),rgb(248,_154,_191,_.7),rgb(252,_214,_255,_.7))]"></div>
+              <div className="absolute bottom-0 top-2 w-full bg-[linear-gradient(to_right,rgb(252,_241,_255,_.7),rgb(41,_216,_255,_.7),rgb(255,_253,_128,_.7),rgb(248,_154,_191,_.7),rgb(252,_214,_255,_.7))] blur-md"></div>
               <Image
                 src={logoImage}
                 alt="logo"
-                className="h-12 w-12 scale-150 relative"
+                className="relative h-12 w-12 scale-150"
               />
             </div>
-            <h1 className="leading-none text-white text-2xl font-extrabold tracking-tighter ">
+            <h1 className="text-2xl font-extrabold leading-none tracking-tighter text-white">
               Crowd Funding
             </h1>
           </div>
           <div className="sm:hidden">
             <Drawer>
               <DrawerTrigger asChild>
-                <div className=" border border-white border-opacity-30 h-10 w-10 inline-flex justify-center items-center rounded-lg">
+                <div className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white border-opacity-30">
                   <MenuIcon className="text-white" />
                 </div>
               </DrawerTrigger>
-              <DrawerContent className="bg-black text-white border-white/30">
+              <DrawerContent className="border-white/30 bg-black text-white">
                 <div className="mx-auto w-full max-w-sm">
                   <DrawerHeader>
                     <DrawerTitle>
                       <Image
                         src={logoImage}
                         alt="logo"
-                        className="h-12 w-12 scale-150 mx-auto"
+                        className="mx-auto h-12 w-12 scale-150"
                       />
                     </DrawerTitle>
                     <DrawerDescription>
@@ -61,7 +61,7 @@ export const Navbar = () => {
                     </DrawerDescription>
                   </DrawerHeader>
                   <div className="p-4 pb-0 text-white/70">
-                    <div className="flex flex-col items-center justify-center space-y-2 w-full">
+                    <div className="flex w-full flex-col items-center justify-center space-y-2">
                       <Link href={"/"}>
                         <DrawerClose>
                           <h1 className="font-bold">Home</h1>
@@ -78,35 +78,35 @@ export const Navbar = () => {
                   </div>
                   <DrawerFooter>
                     <DrawerClose asChild>
-                      <XIcon className="border p-1 rounded-full h-8 w-8 mx-auto" />
+                      <XIcon className="mx-auto h-8 w-8 rounded-full border p-1" />
                     </DrawerClose>
                   </DrawerFooter>
                 </div>
               </DrawerContent>
             </Drawer>
           </div>
-          <nav className="hidden sm:flex gap-6 items-center">
+          <nav className="hidden items-center gap-6 sm:flex">
             <h1
               onClick={() => router.push("/docs")}
-              className="text-opacity-60 text-white hover:text-opacity-90 transition cursor-pointer"
+              className="cursor-pointer text-white text-opacity-60 transition hover:text-opacity-90"
             >
               Docs
             </h1>
 
             <h1
               onClick={() => router.push("/explore")}
-              className="text-opacity-60 text-white hover:text-opacity-90 transition cursor-pointer"
+              className="cursor-pointer text-white text-opacity-60 transition hover:text-opacity-90"
             >
               About
             </h1>
 
             <h1
               onClick={() => router.push("/explore")}
-              className="text-opacity-60 text-white hover:text-opacity-90 transition cursor-pointer"
+              className="cursor-pointer text-white text-opacity-60 transition hover:text-opacity-90"
             >
               Explore
             </h1>
-            <Button variant={"secondary"}>Get Started</Button>
+            <Button>Get Started</Button>
           </nav>
         </div>
       </div>

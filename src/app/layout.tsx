@@ -27,7 +27,7 @@ export default function RootLayout({
         baseTheme: dark,
       }}
     >
-      <html lang="en">
+      <html lang="en" className="dark">
         <head>
           <link rel="icon" href="/logosaas.png" />
         </head>

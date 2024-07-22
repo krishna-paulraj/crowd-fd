@@ -1,0 +1,24 @@
+import { FlipWords } from "@/components/ui/flip-words";
+import appLogo from "@/assets/images/logosaas.png";
+import Image from "next/image";
+
+export const Hero = () => {
+  const words = ["Inspire", "Innovate", "Empower", "Spark"];
+
+  return (
+    <div className="container">
+      <div className="flex flex-col items-center justify-center text-center">
+        <Image src={appLogo} alt="App Logo" className="h-40 w-auto" />
+        <div className="text-3xl font-bold">
+          Explore Ideas that
+          <br className="block sm:hidden" />
+          <FlipWords words={words} className="text-white" />
+        </div>
+        <p className="text-sm text-purple-300 sm:text-lg">
+          Join a vibrant community of supporters and creators.
+        </p>
+      </div>
+      <div className="mt-10 border border-white/60"></div>
+    </div>
+  );
+};

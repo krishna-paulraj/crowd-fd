@@ -10,9 +10,22 @@ import { FolderIcon } from "lucide-react";
 import Image from "next/image";
 import appScreen from "@/assets/images/app-screen.png";
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
+import { daysLeft } from "@/lib/utils";
+
+interface CampaignCardProps {
+  campaign: {
+    title: string;
+    description: string;
+    category: string;
+    ownedBy: string;
+    endDate: Date;
+    fundingGoal: number;
+    currentFunding: number;
+  };
+}
 
 const chartData = [
-  { browser: "safari", visitors: 1260, fill: "hsl(var(--chart-2)" },
+  { browser: "safari", visitors: 1260, fill: "hsl(var(--chart-2))" },
 ];
 
 const dayData = [
@@ -29,39 +42,62 @@ const chartConfig = {
   },
 } satisfies ChartConfig;
 
-export const CampaignCard = () => {
+const formatNumber = (num: number): string => {
+  if (num >= 1000000000) {
+    return (num / 1000000000).toFixed(1).replace(/\.0$/, "") + "B";
+  }
+  if (num >= 1000000) {
+    return (num / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
+  }
+  if (num >= 1000) {
+    return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
+  }
+  return num.toString();
+};
+
+export const CampaignCard = ({ campaign }: CampaignCardProps) => {
+  const {
+    title,
+    description,
+    category,
+    ownedBy,
+    endDate,
+    fundingGoal,
+    currentFunding,
+  } = campaign;
+
+  const remainingDays = daysLeft(endDate);
   return (
-    <div className="w-[288px] shadow-sm shadow-white/30 rounded-lg bg-[#1c1c24] flex flex-col items-center cursor-pointer">
+    <div className="flex w-[288px] cursor-pointer flex-col items-center rounded-lg bg-[#1c1c24] shadow-sm shadow-white/30">
       <Image
         src={appScreen}
         alt="App Screen"
-        className="h-[158px] w-full object-cover object-top rounded-lg"
+        className="h-[158px] w-full rounded-lg object-cover object-top"
       />
 
-      <div className="w-full font-epilogue font-medium text-[12px] text-[#808191] flex justify-start items-center gap-2 p-4">
+      <div className="font-epilogue flex w-full items-center justify-start gap-2 p-4 text-[12px] font-medium text-[#808191] text-purple-300">
         <FolderIcon className="h-5 w-auto" />
-        <h1>Education</h1>
+        <h1>{category}</h1>
       </div>
 
       <div className="block w-full px-4">
-        <h3 className="font-epilogue font-semibold text-[16px] text-white text-left leading-[26px] truncate">
-          Tech for Seniors
+        <h3 className="font-epilogue truncate text-left text-[16px] font-semibold leading-[26px] text-white">
+          {title}
         </h3>
-        <p className="mt-[5px] font-epilogue font-normal text-[#808191] text-left leading-[18px] truncate">
-          Providing senior citizens with access to technology and training to
-          improve their quality of life.
+        <p className="font-epilogue mt-[5px] truncate text-left font-normal leading-[18px] text-[#808191]">
+          {description}
         </p>
       </div>
 
-      <div className="w-full flex p-4 justify-between items-center">
+      <div className="flex w-full items-center justify-between p-4">
         <div className="flex flex-col text-center">
           <ChartContainer
             config={chartConfig}
-            className="min-h-20 mx-auto aspect-square max-h-[250px]"
+            className="mx-auto aspect-square max-h-[250px] min-h-20"
           >
             <RadialBarChart
               data={chartData}
-              endAngle={100}
+              endAngle={(Number(currentFunding) * 360) / fundingGoal}
               innerRadius={30}
               outerRadius={50}
             >
@@ -89,7 +125,7 @@ export const CampaignCard = () => {
                             y={viewBox.cy}
                             className="fill-foreground text-sm font-semibold"
                           >
-                            $ {chartData[0].visitors.toLocaleString()}
+                            ${formatNumber(currentFunding)}
                           </tspan>
                         </text>
                       );
@@ -99,16 +135,16 @@ export const CampaignCard = () => {
               </PolarRadiusAxis>
             </RadialBarChart>
           </ChartContainer>
-          <h1 className="text-sm">Raised of $6000</h1>
+          <h1 className="text-sm">Raised of ${formatNumber(fundingGoal)}</h1>
         </div>
         <div className="flex flex-col items-center">
           <ChartContainer
             config={chartConfig}
-            className="min-h-20 mx-auto aspect-square max-h-[250px]"
+            className="mx-auto aspect-square max-h-[250px] min-h-20"
           >
             <RadialBarChart
               data={dayData}
-              endAngle={100}
+              endAngle={(Number(remainingDays) * 360) / 100}
               innerRadius={30}
               outerRadius={50}
             >
@@ -136,7 +172,7 @@ export const CampaignCard = () => {
                             y={viewBox.cy}
                             className="fill-foreground text-sm font-semibold"
                           >
-                            20
+                            {remainingDays}
                           </tspan>
                         </text>
                       );
@@ -149,9 +185,9 @@ export const CampaignCard = () => {
           <h1 className="text-sm">Days Left</h1>
         </div>
       </div>
-      <div className="flex items-center my-[20px] gap-[12px]">
-        <p className="flex-1 font-epilogue font-normal text-[12px] text-[#808191] truncate">
-          by <span className="text-[#b2b3bd]">Owner</span>
+      <div className="my-[20px] flex items-center gap-[12px]">
+        <p className="font-epilogue flex-1 truncate text-[12px] font-normal text-[#808191]">
+          by <span className="text-[#b2b3bd]">{ownedBy}</span>
         </p>
       </div>
     </div>

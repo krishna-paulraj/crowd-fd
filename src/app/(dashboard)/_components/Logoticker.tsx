@@ -14,17 +14,17 @@ export const LogoTicker = () => {
     "AceternityUI",
   ];
   return (
-    <div className="bg-black text-white py-[72px]">
+    <div className="bg-black py-[72px] text-white">
       <div className="container">
-        <h2 className="text-lg text-center text-white/70">
+        <h2 className="text-center text-lg text-white/70">
           Tech which made possible to make this app.
         </h2>
-        <div className="overflow-hidden mt-9 before:z-10 after:z-10 before:content-[''] after:content-[''] before:absolute after:absolute before:h-full after:h-full before:w-20 after:w-20 relative after:right-0 before:left-0 before:top-0 after:top-0 before:bg-[linear-gradient(to_right,#000,rgb(0,0,0,0))] after:bg-[linear-gradient(to_left,#000,rgb(0,0,0,0))]">
+        <div className="relative mt-9 overflow-hidden before:absolute before:left-0 before:top-0 before:z-10 before:h-full before:w-20 before:bg-[linear-gradient(to_right,#000,rgb(0,0,0,0))] before:content-[''] after:absolute after:right-0 after:top-0 after:z-10 after:h-full after:w-20 after:bg-[linear-gradient(to_left,#000,rgb(0,0,0,0))] after:content-['']">
           <motion.div
             transition={{ duration: 10, ease: "linear", repeat: Infinity }}
             initial={{ translateX: 0 }}
             animate={{ translateX: "-50%" }}
-            className="flex gap-16 flex-none pr-16"
+            className="flex flex-none gap-16 pr-16"
           >
             {tech.map((name) => (
               <h1

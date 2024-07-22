@@ -46,14 +46,14 @@ export const Steps = () => {
     },
   ];
   return (
-    <div className="bg-black text-white bg-gradient-to-b from-black via-[#5D2CA8] to-black py-[72px] pb-96">
+    <div className="bg-black bg-gradient-to-b from-black via-[#5D2CA8] to-black py-[72px] pb-96 text-white">
       <div className="container flex flex-col overflow-hidden">
         <ContainerScroll
           titleComponent={
             <>
-              <h1 className="text-2xl sm:text-4xl font-semibold text-white">
+              <h1 className="text-2xl font-semibold text-white sm:text-4xl">
                 Get Started with just few steps! <br />
-                <span className="text-4xl md:text-[6rem] font-bold mt-1 leading-none">
+                <span className="mt-1 text-4xl font-bold leading-none md:text-[6rem]">
                   Ready to Make a Difference?
                 </span>
               </h1>
@@ -65,7 +65,7 @@ export const Steps = () => {
             alt="hero"
             height={720}
             width={1400}
-            className="mx-auto rounded-2xl object-cover h-full object-left-top"
+            className="mx-auto h-full rounded-2xl object-cover object-left-top"
             draggable={false}
           />
         </ContainerScroll>
@@ -87,7 +87,7 @@ export const Steps = () => {
                       {" "}
                       <Link
                         href={user.link}
-                        className="underline underline-offset-2 text-purple-400"
+                        className="text-purple-400 underline underline-offset-2"
                       >
                         {user.link}
                       </Link>
@@ -99,7 +99,7 @@ export const Steps = () => {
             </li>
           ))}
         </ol>
-        <h1 className="text-4xl font-bold mt-10 underline underline-offset-8">
+        <h1 className="mt-10 text-4xl font-bold underline underline-offset-8">
           Organizations
         </h1>
         <ol className="my-8 space-y-4 pt-8 md:flex md:space-x-12 md:space-y-0">
@@ -117,7 +117,7 @@ export const Steps = () => {
                       {" "}
                       <Link
                         href={user.link}
-                        className="underline underline-offset-2 text-purple-400"
+                        className="text-purple-400 underline underline-offset-2"
                       >
                         {user.link}
                       </Link>

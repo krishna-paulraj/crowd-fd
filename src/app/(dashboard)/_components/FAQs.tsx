@@ -40,10 +40,10 @@ const AccordianItem = ({
   return (
     <div
       key={question}
-      className="py-7 border-b border-white/30"
+      className="border-b border-white/30 py-7"
       onClick={() => setIsOpen(!isOpen)}
     >
-      <div className="flex items-center ">
+      <div className="flex items-center">
         <span className="flex-1 text-lg font-bold">{question}</span>
         {isOpen ? <MinusIcon /> : <PlusIcon />}
       </div>
@@ -76,12 +76,12 @@ const AccordianItem = ({
 
 export const FAQs = () => {
   return (
-    <div className="bg-black text-white bg-gradient-to-b from-[#5D2CA8] to-black py-[72px]">
+    <div className="bg-black bg-gradient-to-b from-[#5D2CA8] to-black py-[72px] text-white">
       <div className="container">
-        <h2 className="text-center text-5xl sm:text-6xl sm:max-w-[648px] mx-auto font-bold tracking-tighter">
+        <h2 className="mx-auto text-center text-5xl font-bold tracking-tighter sm:max-w-[648px] sm:text-6xl">
           Frequently asked question
         </h2>
-        <div className="mt-12 max-w-[648px] mx-auto">
+        <div className="mx-auto mt-12 max-w-[648px]">
           {items.map(({ question, answer }) =>
             AccordianItem({ question, answer }),
           )}
