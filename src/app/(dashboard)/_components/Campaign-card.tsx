@@ -68,7 +68,7 @@ export const CampaignCard = ({ campaign }: CampaignCardProps) => {
 
   const remainingDays = daysLeft(endDate);
   return (
-    <div className="flex w-[288px] cursor-pointer flex-col items-center rounded-lg bg-[#1c1c24] shadow-sm shadow-white/30">
+    <div className="flex w-[288px] cursor-pointer flex-col items-center rounded-xl border border-[#333333] bg-[#1E1E1E] shadow-lg shadow-[rgba(0,0,0,0.4)]">
       <Image
         src={appScreen}
         alt="App Screen"
