@@ -16,6 +16,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { ScrollArea } from "@/components/ui/scroll-area";
 
 interface CategoryProps {
   category: string[];
@@ -49,25 +50,27 @@ export function Category({ category, setCategory }: CategoryProps) {
           <CommandInput placeholder="Search framework..." className="h-9" />
           <CommandEmpty>No framework found.</CommandEmpty>
           <CommandGroup>
-            {category.map((cat) => (
-              <CommandList key={cat}>
-                <CommandItem
-                  value={cat}
-                  onSelect={(currentValue) => {
-                    setValue(currentValue === value ? "" : currentValue);
-                    setOpen(false);
-                  }}
-                >
-                  {cat}
-                  <CheckIcon
-                    className={cn(
-                      "ml-auto h-4 w-4",
-                      value === cat ? "opacity-100" : "opacity-0",
-                    )}
-                  />
-                </CommandItem>
-              </CommandList>
-            ))}
+            <ScrollArea className="h-72 w-auto">
+              {category.map((cat) => (
+                <CommandList key={cat}>
+                  <CommandItem
+                    value={cat}
+                    onSelect={(currentValue) => {
+                      setValue(currentValue === value ? "" : currentValue);
+                      setOpen(false);
+                    }}
+                  >
+                    <CheckIcon
+                      className={cn(
+                        "mr-2 h-4 w-4",
+                        value === cat ? "opacity-100" : "opacity-0",
+                      )}
+                    />
+                    {cat}
+                  </CommandItem>
+                </CommandList>
+              ))}
+            </ScrollArea>
           </CommandGroup>
         </Command>
       </PopoverContent>

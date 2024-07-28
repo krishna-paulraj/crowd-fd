@@ -10,7 +10,7 @@ import Image from "next/image";
 export const Features = () => {
   return (
     <div>
-      <div className="container block border border-black bg-black pt-28 text-center text-white sm:hidden">
+      <div className="container block border border-black bg-black pt-10 text-center text-white sm:hidden">
         <h1 className="text-3xl font-bold tracking-tighter">
           Explore Organizations
         </h1>

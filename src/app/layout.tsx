@@ -21,8 +21,24 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const routes = [
+    {
+      label: "Explore",
+      route: "/explore",
+    },
+    {
+      label: "Docs",
+      route: "/docs",
+    },
+    {
+      label: "About",
+      route: "/about",
+    },
+  ];
+
   return (
     <ClerkProvider
+      afterSignOutUrl={"/"}
       appearance={{
         baseTheme: dark,
       }}
@@ -33,7 +49,7 @@ export default function RootLayout({
         </head>
         <body className={cn(dmSans.className, "antialiased")}>
           <Banner />
-          <Navbar />
+          <Navbar routes={routes} />
           {children}
           <Footer />
         </body>

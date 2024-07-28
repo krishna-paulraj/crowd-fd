@@ -8,7 +8,7 @@ export const Steps = () => {
     {
       stepNo: 1,
       title: "Sign up for an account",
-      description: "Either starting out with a free plan or choose our",
+      description: "Make an account on Crowd Funding and get started.",
       link: "/sign-up",
     },
     {
@@ -29,7 +29,7 @@ export const Steps = () => {
     {
       stepNo: 1,
       title: "Sign up for an account",
-      description: "Either starting out with a free plan or choose our",
+      description: "Make an account on Crowd Funding and get started.",
       link: "/sign-up",
     },
     {
@@ -46,7 +46,7 @@ export const Steps = () => {
     },
   ];
   return (
-    <div className="bg-black bg-gradient-to-b from-black via-[#5D2CA8] to-black py-[72px] pb-96 text-white">
+    <div className="bg-black bg-gradient-to-b from-black via-[#5D2CA8] to-black pb-20 text-white">
       <div className="container flex flex-col overflow-hidden">
         <ContainerScroll
           titleComponent={
@@ -69,12 +69,13 @@ export const Steps = () => {
             draggable={false}
           />
         </ContainerScroll>
-        <h1 className="text-4xl font-bold underline underline-offset-8">
-          Investors
-        </h1>
+        <h1 className="text-center text-5xl font-bold">Investors</h1>
         <ol className="my-8 space-y-4 pt-8 md:flex md:space-x-12 md:space-y-0">
           {userSteps.map((user) => (
-            <li key={user.title} className="md:flex-1">
+            <li
+              key={user.title}
+              className="cursor-pointer transition duration-100 ease-in-out hover:scale-105 md:flex-1"
+            >
               <div className="flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
                 <span className="text-sm font-medium text-purple-400">
                   Step {user.stepNo}
@@ -99,12 +100,13 @@ export const Steps = () => {
             </li>
           ))}
         </ol>
-        <h1 className="mt-10 text-4xl font-bold underline underline-offset-8">
-          Organizations
-        </h1>
-        <ol className="my-8 space-y-4 pt-8 md:flex md:space-x-12 md:space-y-0">
+        <h1 className="mt-10 text-center text-5xl font-bold">Organizations</h1>
+        <ol className="space-y-4 pt-8 md:flex md:space-x-12 md:space-y-0">
           {organitionSteps.map((user) => (
-            <li key={user.title} className="md:flex-1">
+            <li
+              key={user.title}
+              className="cursor-pointer transition duration-100 ease-in-out hover:scale-105 md:flex-1"
+            >
               <div className="flex flex-col space-y-2 border-l-4 border-zinc-300 py-2 pl-4 md:border-l-0 md:border-t-2 md:pb-0 md:pl-0 md:pt-4">
                 <span className="text-sm font-medium text-purple-400">
                   Step {user.stepNo}

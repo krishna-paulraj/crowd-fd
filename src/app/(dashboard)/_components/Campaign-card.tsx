@@ -11,6 +11,7 @@ import Image from "next/image";
 import appScreen from "@/assets/images/app-screen.png";
 import { ChartConfig, ChartContainer } from "@/components/ui/chart";
 import { daysLeft } from "@/lib/utils";
+import { formatNumber } from "@/lib/utils";
 
 interface CampaignCardProps {
   campaign: {
@@ -33,27 +34,11 @@ const dayData = [
 ];
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
   safari: {
     label: "Safari",
     theme: { light: "", dark: "dark" },
   },
 } satisfies ChartConfig;
-
-const formatNumber = (num: number): string => {
-  if (num >= 1000000000) {
-    return (num / 1000000000).toFixed(1).replace(/\.0$/, "") + "B";
-  }
-  if (num >= 1000000) {
-    return (num / 1000000).toFixed(1).replace(/\.0$/, "") + "M";
-  }
-  if (num >= 1000) {
-    return (num / 1000).toFixed(1).replace(/\.0$/, "") + "K";
-  }
-  return num.toString();
-};
 
 export const CampaignCard = ({ campaign }: CampaignCardProps) => {
   const {
@@ -68,15 +53,16 @@ export const CampaignCard = ({ campaign }: CampaignCardProps) => {
 
   const remainingDays = daysLeft(endDate);
   return (
-    <div className="flex w-[288px] cursor-pointer flex-col items-center rounded-xl border border-[#333333] bg-[#1E1E1E] shadow-lg shadow-[rgba(0,0,0,0.4)]">
+    <div className="flex w-[288px] cursor-pointer flex-col items-center rounded-xl border border-[#333333] bg-[#1E1E1E] shadow-lg shadow-[rgba(0,0,0,0.4)] hover:shadow-xl hover:shadow-[rgba(0,0,0,0.4)]">
       <Image
         loading="lazy"
+        decoding="async"
         src={appScreen}
         alt="App Screen"
-        className="h-[158px] w-full rounded-lg object-cover object-top"
+        className="h-[158px] w-full scale-100 rounded-lg object-cover object-top"
       />
 
-      <div className="font-epilogue flex w-full items-center justify-start gap-2 p-4 text-[12px] font-medium text-[#808191] text-purple-300">
+      <div className="font-epilogue flex w-full items-center justify-start gap-2 p-4 text-[12px] font-medium text-purple-300">
         <FolderIcon className="h-5 w-auto" />
         <h1>{category}</h1>
       </div>
