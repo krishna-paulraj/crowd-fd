@@ -14,7 +14,6 @@ import {
   DrawerTrigger,
 } from "./ui/drawer";
 import Link from "next/link";
-import { auth, User } from "@clerk/nextjs/server";
 import { useRouter } from "next/navigation";
 import {
   SignInWithMetamaskButton,

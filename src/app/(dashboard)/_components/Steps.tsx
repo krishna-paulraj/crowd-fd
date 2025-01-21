@@ -46,7 +46,7 @@ export const Steps = () => {
     },
   ];
   return (
-    <div className="bg-black bg-gradient-to-b from-black via-[#5D2CA8] to-black pb-20 text-white">
+    <section className="bg-black bg-gradient-to-b from-black via-[#5D2CA8] to-black pb-20 text-white">
       <div className="container flex flex-col overflow-hidden">
         <ContainerScroll
           titleComponent={
@@ -68,7 +68,9 @@ export const Steps = () => {
             className="mx-auto h-full rounded-2xl object-cover object-left-top"
             draggable={false}
           />
+          <section id="steps"></section>
         </ContainerScroll>
+
         <h1 className="text-center text-5xl font-bold">Investors</h1>
         <ol className="my-8 space-y-4 pt-8 md:flex md:space-x-12 md:space-y-0">
           {userSteps.map((user) => (
@@ -132,6 +134,6 @@ export const Steps = () => {
           ))}
         </ol>
       </div>
-    </div>
+    </section>
   );
 };

@@ -7,6 +7,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import Banner from "./(dashboard)/_components/banner";
 import { dark } from "@clerk/themes";
+import { Toaster } from "@/components/ui/toaster";
 
 const dmSans = DM_Sans({ subsets: ["latin"] });
 
@@ -43,7 +44,7 @@ export default function RootLayout({
         baseTheme: dark,
       }}
     >
-      <html lang="en" className="dark">
+      <html lang="en" className="dark scroll-smooth">
         <head>
           <link rel="icon" href="/logosaas.png" />
         </head>
@@ -51,6 +52,7 @@ export default function RootLayout({
           <Banner />
           <Navbar routes={routes} />
           {children}
+          <Toaster />
           <Footer />
         </body>
       </html>

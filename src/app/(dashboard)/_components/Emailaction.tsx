@@ -1,8 +1,15 @@
 import { BackgroundBeams } from "@/components/ui/background-beams";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useToast } from "@/components/ui/use-toast";
 
 export const EmailAction = () => {
+  const { toast } = useToast();
+  const onSubmitHandler = () => {
+    toast({
+      title: "Email Submited!",
+    });
+  };
   return (
     <div className="relative flex h-[40rem] w-full flex-col items-center justify-center rounded-md bg-neutral-950 antialiased">
       <div className="mx-auto max-w-2xl p-4">
@@ -23,7 +30,14 @@ export const EmailAction = () => {
             type="email"
             placeholder="Email"
           />
-          <Button type="submit">Subscribe</Button>
+          <Button
+            type="submit"
+            onClick={() => {
+              onSubmitHandler();
+            }}
+          >
+            Subscribe
+          </Button>
         </div>
       </div>
       <BackgroundBeams />
